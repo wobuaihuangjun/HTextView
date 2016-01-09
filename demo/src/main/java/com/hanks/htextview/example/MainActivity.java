@@ -22,12 +22,13 @@ public class MainActivity extends AppCompatActivity implements ViewSwitcher.View
     String[] sentences = new String[]{"What is design?", "Design", "Design is not just", "what it looks like", "and feels like.", "Design", "is how it works.", "- Steve Jobs", "Older people", "sit down and ask,", "'What is it?'", "but the boy asks,", "'What can I do with it?'.", "- Steve Jobs", "Swift", "Objective-C", "iPhone", "iPad", "Mac Mini", "MacBook Pro", "Mac Pro", "爱老婆", "老婆和女儿"};
     private int mCounter = 10;
     private TextSwitcher textSwitcher;
-    private HTextView    hTextView;
+    private HTextView hTextView;
 
-    private SeekBar    seekBar;
+    private SeekBar seekBar;
     private RadioGroup radioGroup;
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -44,16 +45,19 @@ public class MainActivity extends AppCompatActivity implements ViewSwitcher.View
         seekBar = (SeekBar) findViewById(R.id.seekbar);
         seekBar.setMax(20);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 hTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 8 + progress);
                 hTextView.reset(hTextView.getText());
             }
 
-            @Override public void onStartTrackingTouch(SeekBar seekBar) {
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
 
             }
 
-            @Override public void onStopTrackingTouch(SeekBar seekBar) {
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
 
             }
         });
@@ -61,7 +65,8 @@ public class MainActivity extends AppCompatActivity implements ViewSwitcher.View
 
         radioGroup = (RadioGroup) findViewById(R.id.typeGroup);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override public void onCheckedChanged(RadioGroup group, int checkedId) {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.scale:
                         hTextView.setTextColor(Color.BLACK);
@@ -130,7 +135,8 @@ public class MainActivity extends AppCompatActivity implements ViewSwitcher.View
         hTextView.animateText(sentences[mCounter]);
     }
 
-    @Override public View makeView() {
+    @Override
+    public View makeView() {
 
         TextView t = new TextView(this);
         t.setGravity(Gravity.CENTER);
