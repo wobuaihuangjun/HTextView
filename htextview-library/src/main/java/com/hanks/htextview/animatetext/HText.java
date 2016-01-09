@@ -1,4 +1,5 @@
 package com.hanks.htextview.animatetext;
+
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
@@ -8,6 +9,7 @@ import com.hanks.htextview.util.CharacterUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * base class
  * Created by hanks on 15-12-19.
@@ -19,7 +21,7 @@ public abstract class HText implements IHText {
     /**
      * the gap between characters
      */
-    protected float[] gaps    = new float[100];
+    protected float[] gaps = new float[100];
     protected float[] oldGaps = new float[100];
 
     /**
@@ -33,13 +35,14 @@ public abstract class HText implements IHText {
     protected List<CharacterDiffResult> differentList = new ArrayList<>();
 
     protected float oldStartX = 0; // 原来的字符串开始画的x位置
-    protected float startX    = 0; // 新的字符串开始画的x位置
-    protected float startY    = 0; // 字符串开始画的y, baseline
+    protected float startX = 0; // 新的字符串开始画的x位置
+    protected float startY = 0; // 字符串开始画的y, baseline
 
     protected HTextView mHTextView;
 
 
-    @Override public void init(HTextView hTextView, AttributeSet attrs, int defStyle) {
+    @Override
+    public void init(HTextView hTextView, AttributeSet attrs, int defStyle) {
 
         mHTextView = hTextView;
 
@@ -58,14 +61,16 @@ public abstract class HText implements IHText {
 
         initVariables();
         mHTextView.postDelayed(new Runnable() {
-            @Override public void run() {
+            @Override
+            public void run() {
                 prepareAnimate();
             }
-        },50);
+        }, 50);
 
     }
 
-    @Override public void animateText(CharSequence text) {
+    @Override
+    public void animateText(CharSequence text) {
         mHTextView.setText(text);
         mOldText = mText;
         mText = text;
@@ -74,7 +79,8 @@ public abstract class HText implements IHText {
         animateStart(text);
     }
 
-    @Override public void onDraw(Canvas canvas) {
+    @Override
+    public void onDraw(Canvas canvas) {
         drawFrame(canvas);
     }
 
@@ -110,24 +116,27 @@ public abstract class HText implements IHText {
      * 类被实例化时初始化
      */
     protected abstract void initVariables();
+
     /**
      * 具体实现动画
+     *
      * @param text
      */
     protected abstract void animateStart(CharSequence text);
 
     /**
      * 每次动画前初始化调用
+     *
      * @param text
      */
     protected abstract void animatePrepare(CharSequence text);
 
     /**
      * 动画每次刷新界面时调用
+     *
      * @param canvas
      */
     protected abstract void drawFrame(Canvas canvas);
-
 
 
 }

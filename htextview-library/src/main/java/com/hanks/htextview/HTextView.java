@@ -27,8 +27,7 @@ public class HTextView extends TextView {
     private int defStyle;
 
     public HTextView(Context context) {
-        super(context);
-        init(null, 0);
+        this(context, null);
     }
 
     public HTextView(Context context, AttributeSet attrs) {
@@ -43,7 +42,6 @@ public class HTextView extends TextView {
 
 
     private void init(AttributeSet attrs, int defStyle) {
-
         this.attrs = attrs;
         this.defStyle = defStyle;
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.HTextView);
